@@ -7,14 +7,17 @@ using UnityEngine.InputSystem.Layouts;
 /// It represents a virtual pointer device with a customizable position control.
 /// The class is decorated with the InputControlLayout attribute to specify its state type and display name.
 /// </summary>
-[InputControlLayout(stateType = typeof(VirtualPointerInputStateTypeInfo), displayName = "Virtual Pointer")]
-public class VirtualPointer : Pointer
+namespace Tools.UGUI.VirtualPointer
 {
-    public new Vector2Control position { get; private set; }
-
-    protected override void FinishSetup()
+    [InputControlLayout(stateType = typeof(VirtualPointerInputStateTypeInfo), displayName = "Virtual Pointer")]
+    public class VirtualPointer : Pointer
     {
-        base.FinishSetup();
-        position = GetChildControl<Vector2Control>("Position");
+        public new Vector2Control position { get; private set; }
+
+        protected override void FinishSetup()
+        {
+            base.FinishSetup();
+            position = GetChildControl<Vector2Control>("Position");
+        }
     }
 }

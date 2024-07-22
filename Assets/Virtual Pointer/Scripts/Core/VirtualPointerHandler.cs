@@ -3,106 +3,109 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Layouts;
 
-[RequireComponent(typeof(RectTransform))]
-public class VirtualPointerHandler : MonoBehaviour
+namespace Tools.UGUI.VirtualPointer
 {
-    private VirtualPointer _virtualPointer;
-    private RectTransform _rectTransform;
-
-    [Header("Settings")]
-    [SerializeField] private bool _manageHardwareCursorVisibility;
-
-    #region Unity Methods
-    private void Awake()
+    [RequireComponent(typeof(RectTransform))]
+    public class VirtualPointerHandler : MonoBehaviour
     {
-        _rectTransform = GetComponent<RectTransform>();
+        private VirtualPointer _virtualPointer;
+        private RectTransform _rectTransform;
 
-        RegisterVirtualPointer();
-        StartCoroutine(CreateVirtualPointerAtEndOfFrame());
-    }
-    private void OnEnable()
-    {
-        HideCursor();
-    }
+        [Header("Settings")]
+        [SerializeField] private bool _manageHardwareCursorVisibility;
 
-    private void OnDisable()
-    {
-        ShowCursor();
-    }
-
-    private void OnDestroy()
-    {
-        RemoveVirtualPointer();
-    }
-
-    private void Update()
-    {
-        UpdateVirtualPointerPosition();
-
-        HideCursor();
-    }
-    #endregion
-
-    #region Private Methods
-
-    private IEnumerator CreateVirtualPointerAtEndOfFrame()
-    {
-        // Wait until all other updates are done
-        yield return new WaitForEndOfFrame();
-        CreateVirtualPointer();
-    }
-
-    private void CreateVirtualPointer()
-    {
-        if (InputSystem.GetDevice<VirtualPointer>() == null)
+        #region Unity Methods
+        private void Awake()
         {
-            _virtualPointer = InputSystem.AddDevice<VirtualPointer>();
+            _rectTransform = GetComponent<RectTransform>();
+
+            RegisterVirtualPointer();
+            StartCoroutine(CreateVirtualPointerAtEndOfFrame());
         }
-        else
+        private void OnEnable()
         {
-            _virtualPointer = InputSystem.GetDevice<VirtualPointer>();
+            HideCursor();
         }
-    }
 
-    private void RemoveVirtualPointer()
-    {
-        if (_virtualPointer != null && InputSystem.GetDevice<VirtualPointer>() == _virtualPointer)
+        private void OnDisable()
         {
-            InputSystem.RemoveDevice(_virtualPointer);
-            _virtualPointer = null;
+            ShowCursor();
         }
-    }
 
-    private void UpdateVirtualPointerPosition()
-    {
-        if (_virtualPointer != null)
+        private void OnDestroy()
         {
-            Vector2 screenPosition = RectTransformUtility.WorldToScreenPoint(null, _rectTransform.position);
-            InputSystem.QueueStateEvent(_virtualPointer, new VirtualPointerInputStateTypeInfo { position = screenPosition });
+            RemoveVirtualPointer();
         }
-    }
 
-    private static void RegisterVirtualPointer()
-    {
-        InputSystem.RegisterLayout<VirtualPointer>(
-            matches: new InputDeviceMatcher().WithInterface("VirtualPointer"));
-    }
-
-    private void ShowCursor()
-    {
-        if (_manageHardwareCursorVisibility)
+        private void Update()
         {
-            Cursor.visible = true;
-        }
-    }
+            UpdateVirtualPointerPosition();
 
-    private void HideCursor()
-    {
-        if (_manageHardwareCursorVisibility)
+            HideCursor();
+        }
+        #endregion
+
+        #region Private Methods
+
+        private IEnumerator CreateVirtualPointerAtEndOfFrame()
         {
-            Cursor.visible = false;
+            // Wait until all other updates are done
+            yield return new WaitForEndOfFrame();
+            CreateVirtualPointer();
         }
-    }
 
-    #endregion
+        private void CreateVirtualPointer()
+        {
+            if (InputSystem.GetDevice<VirtualPointer>() == null)
+            {
+                _virtualPointer = InputSystem.AddDevice<VirtualPointer>();
+            }
+            else
+            {
+                _virtualPointer = InputSystem.GetDevice<VirtualPointer>();
+            }
+        }
+
+        private void RemoveVirtualPointer()
+        {
+            if (_virtualPointer != null && InputSystem.GetDevice<VirtualPointer>() == _virtualPointer)
+            {
+                InputSystem.RemoveDevice(_virtualPointer);
+                _virtualPointer = null;
+            }
+        }
+
+        private void UpdateVirtualPointerPosition()
+        {
+            if (_virtualPointer != null)
+            {
+                Vector2 screenPosition = RectTransformUtility.WorldToScreenPoint(null, _rectTransform.position);
+                InputSystem.QueueStateEvent(_virtualPointer, new VirtualPointerInputStateTypeInfo { position = screenPosition });
+            }
+        }
+
+        private static void RegisterVirtualPointer()
+        {
+            InputSystem.RegisterLayout<VirtualPointer>(
+                matches: new InputDeviceMatcher().WithInterface("VirtualPointer"));
+        }
+
+        private void ShowCursor()
+        {
+            if (_manageHardwareCursorVisibility)
+            {
+                Cursor.visible = true;
+            }
+        }
+
+        private void HideCursor()
+        {
+            if (_manageHardwareCursorVisibility)
+            {
+                Cursor.visible = false;
+            }
+        }
+
+        #endregion
+    }
 }

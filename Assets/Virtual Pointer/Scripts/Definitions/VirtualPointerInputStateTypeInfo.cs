@@ -9,10 +9,13 @@ using UnityEngine.InputSystem.LowLevel;
 /// It implements the IInputStateTypeInfo interface to provide information about the input state format.
 /// The struct contains a single control, position, which is a Vector2 representing the pointer's position.
 /// </summary>
-public struct VirtualPointerInputStateTypeInfo : IInputStateTypeInfo
+namespace Tools.UGUI.VirtualPointer
 {
-    public FourCC format => new FourCC('V', 'P', 'T', 'R');
+    public struct VirtualPointerInputStateTypeInfo : IInputStateTypeInfo
+    {
+        public FourCC format => new FourCC('V', 'P', 'T', 'R');
 
-    [InputControl(layout = "Vector2")]
-    public Vector2 position;
+        [InputControl(layout = "Vector2")]
+        public Vector2 position;
+    }
 }
