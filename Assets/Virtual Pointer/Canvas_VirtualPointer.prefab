@@ -101,7 +101,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 536854327
+    m_Bits: 4294967295
 --- !u!1 &4358172020032417951
 GameObject:
   m_ObjectHideFlags: 0
@@ -249,11 +249,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b72bb3af97239544afcf06607c29204, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveActionReference: {fileID: -7042365695875835859, guid: 97087439b2ab2954b8cf8d0e594c5996,
-    type: 3}
+  _moveActionReference: {fileID: -7042365695875835859, guid: 97087439b2ab2954b8cf8d0e594c5996, type: 3}
   _moveSpeed: 500
   _enableDirectionalMovement: 1
-  _pointerPositionInputAction: {fileID: 8030754163679232430, guid: 97087439b2ab2954b8cf8d0e594c5996,
-    type: 3}
+  _pointerPositionInputAction: {fileID: 8030754163679232430, guid: 97087439b2ab2954b8cf8d0e594c5996, type: 3}
   _enablePositionalMovement: 1
   _pointerRectTransform: {fileID: 1240084295376426199}
