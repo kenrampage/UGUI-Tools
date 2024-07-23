@@ -16,6 +16,6 @@ namespace Tools.UGUI.VirtualPointer
         public FourCC format => new FourCC('V', 'P', 'T', 'R');
 
         [InputControl(layout = "Vector2")]
-        public Vector2 position;
+        public Vector2 Position;
     }
 }

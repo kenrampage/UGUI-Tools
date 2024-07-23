@@ -80,7 +80,7 @@ namespace Tools.UGUI.VirtualPointer
             if (_virtualPointer != null)
             {
                 Vector2 screenPosition = RectTransformUtility.WorldToScreenPoint(null, _rectTransform.position);
-                InputSystem.QueueStateEvent(_virtualPointer, new VirtualPointerInputStateTypeInfo { position = screenPosition });
+                InputSystem.QueueStateEvent(_virtualPointer, new VirtualPointerInputStateTypeInfo { Position = screenPosition });
             }
         }
 

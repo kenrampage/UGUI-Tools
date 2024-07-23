@@ -1,5 +1,5 @@
 {
-    "name": "InputActions_VirtualPointerDemo",
+    "name": "InputActions_CursorManagerDemo",
     "maps": [
         {
             "name": "Default",
@@ -9,6 +9,15 @@
                     "name": "Point",
                     "type": "Value",
                     "id": "f5bfba2b-06bc-4c47-bf95-f6a01eb97d5e",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "VirtualPoint",
+                    "type": "Value",
+                    "id": "ca714048-cc45-4537-9410-93be76c3ba8c",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
@@ -45,11 +54,11 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "3abf1b48-29c8-469a-8db1-73cda39f711c",
-                    "path": "<VirtualPointer>/position",
+                    "id": "5b5bce8e-9051-44b9-945a-af2fc790550e",
+                    "path": "<Mouse>/position",
                     "interactions": "",
                     "processors": "",
-                    "groups": "MKB;Gamepad",
+                    "groups": "MKB",
                     "action": "Point",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -117,6 +126,17 @@
                     "processors": "",
                     "groups": "MKB",
                     "action": "Submit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d9701051-be40-4a80-ade4-845ebd5a1aa4",
+                    "path": "<VirtualPointer>/Position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "MKB;Gamepad",
+                    "action": "VirtualPoint",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

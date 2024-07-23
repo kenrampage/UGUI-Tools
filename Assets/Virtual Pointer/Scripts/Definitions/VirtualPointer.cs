@@ -12,12 +12,12 @@ namespace Tools.UGUI.VirtualPointer
     [InputControlLayout(stateType = typeof(VirtualPointerInputStateTypeInfo), displayName = "Virtual Pointer")]
     public class VirtualPointer : Pointer
     {
-        public new Vector2Control position { get; private set; }
+        public Vector2Control Position { get; private set; }
 
         protected override void FinishSetup()
         {
             base.FinishSetup();
-            position = GetChildControl<Vector2Control>("Position");
+            Position = GetChildControl<Vector2Control>("Position");
         }
     }
 }
