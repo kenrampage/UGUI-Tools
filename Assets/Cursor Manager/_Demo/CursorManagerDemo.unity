@@ -1641,6 +1641,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HoveredComponentFinder_Selectable
       objectReference: {fileID: 0}
+    - target: {fileID: 8942328917823298394, guid: 601be89cbd34fe741b17c4fb26eb2de1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
