@@ -2412,7 +2412,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 810425472}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.15948434
+  m_Size: 0.15948431
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4177,13 +4177,6 @@ MonoBehaviour:
     a virtual pointer device for the input system.
 
 
-    VirtualPointerHandler.cs
-
-    In
-    the Canvas_VirtualPointer prefab, reads the screen position of this object and
-    saves it to that virtual pointer device.
-
-
     VirtualPointerMover.cs
 
     Moves
@@ -4191,8 +4184,16 @@ MonoBehaviour:
     movement.
 
 
-    Read the virtual pointer device position instead of mouse position
-    in other Input Actions in your project, like Unity''s Event System.'
+    VirtualPointerHandler.cs
+
+    Reads the screen position of this
+    object and saves it to that virtual pointer device.
+
+
+    You should read the
+    virtual pointer device position instead of mouse position in other Input Actions
+    in your project. See Canvas_VirtualPointer and EventSystem_VirtualPointerDemo
+    for examples.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4625,6 +4626,10 @@ PrefabInstance:
     - target: {fileID: 2873939852503991438, guid: e3013ab886d05c84a96319b54515c257, type: 3}
       propertyPath: m_Name
       value: Canvas_VirtualPointer
+      objectReference: {fileID: 0}
+    - target: {fileID: 8458324789170284845, guid: e3013ab886d05c84a96319b54515c257, type: 3}
+      propertyPath: _manageHardwareCursorVisibility
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
