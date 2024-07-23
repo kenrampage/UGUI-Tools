@@ -111,7 +111,7 @@ public class CursorManager : MonoBehaviour
 
     private void HandleStateChange()
     {
-        Debug.Log($"State changed to: {currentState}");
+        //Debug.Log($"State changed to: {currentState}");
         UpdateCursorVisibility();
     }
 
