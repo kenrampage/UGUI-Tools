@@ -236,7 +236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3e1156dd9b84204bb82802ffd9add10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _manageHardwareCursorVisibility: 1
+  _hideHardwareCursor: 1
 --- !u!114 &7292324704160384285
 MonoBehaviour:
   m_ObjectHideFlags: 0
