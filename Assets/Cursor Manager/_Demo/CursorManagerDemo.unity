@@ -4171,7 +4171,15 @@ MonoBehaviour:
   m_text: 'How it Works:
 
 
-'
+    CursorManager.cs
+
+    Listens to input actions for
+    Click and Position and calculates current cursor state based on click state and
+    hover state.
+
+
+    Input Actions for Click and Position should match the EventSystem
+    for the scene'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
