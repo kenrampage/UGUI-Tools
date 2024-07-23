@@ -2,10 +2,11 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
-namespace Tools.UGUI.CursorManager
+namespace Tools.UGUI.CursorManager._WIP
 {
-    public class CursorManager : MonoBehaviour
+    public class CursorManagerWithComponentCheck : MonoBehaviour
     {
         public enum State
         {
@@ -41,6 +42,8 @@ namespace Tools.UGUI.CursorManager
         public UnityEvent OnClickStatusChanged;
         public UnityEvent OnHoverStatusChanged;
 
+        [SerializeField] private HoveredComponentFinder<Selectable> _hoveredComponentFinder;
+
         private void OnEnable()
         {
             Cursor.visible = !_hideHardwareCursor;
@@ -60,8 +63,8 @@ namespace Tools.UGUI.CursorManager
                 transform.position = pointerPosition;
             }
 
-            // Check if the pointer is over a UI element
-            _hoverOn = EventSystem.current.IsPointerOverGameObject();
+            // Check if the pointer is over a UI element with a Selectable component
+            _hoverOn = _hoveredComponentFinder.IsComponentFound;
 
             // Determine if dragging has started while hovering
             if (_clickOn && !_isDragging && _hoverOn && Vector2.Distance(pointerPosition, _lastPointerPosition) > 0.1f)

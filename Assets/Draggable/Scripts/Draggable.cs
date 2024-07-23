@@ -4,7 +4,7 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 using System;
 
-namespace Tools.UGUI
+namespace Tools.UGUI.Draggable
 {
     /// <summary>
     /// Allows a UI element to be draggable within a canvas.

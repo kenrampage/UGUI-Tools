@@ -15,33 +15,6 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "VirtualPoint",
-                    "type": "Value",
-                    "id": "ca714048-cc45-4537-9410-93be76c3ba8c",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "Submit",
-                    "type": "Button",
-                    "id": "5a8a5931-02a5-4276-bb9d-a5fed0f9d9d6",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Scroll",
-                    "type": "Value",
-                    "id": "bf68fbce-7bca-4b15-8bf9-cad9515d153e",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
                     "name": "Click",
                     "type": "PassThrough",
                     "id": "302e0763-2d89-4f5c-b47f-21633ee154cb",
@@ -93,50 +66,6 @@
                     "processors": "",
                     "groups": "MKB",
                     "action": "Click",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "c13d9128-fc7e-47b2-9925-ebed75df0ef5",
-                    "path": "<Mouse>/scroll",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "MKB",
-                    "action": "Scroll",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "b8d60f2b-499c-43cf-b7ef-088d42d6d895",
-                    "path": "<Gamepad>/rightStick",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Scroll",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "27547e0a-d6ae-4edb-9e70-0e4e79e81fcf",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "MKB",
-                    "action": "Submit",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "d9701051-be40-4a80-ade4-845ebd5a1aa4",
-                    "path": "<VirtualPointer>/Position",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "MKB;Gamepad",
-                    "action": "VirtualPoint",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

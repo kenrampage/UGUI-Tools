@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.Events;
 using System;
 
-namespace Tools.UGUI
+namespace Tools.UGUI.Draggable
 {
     /// <summary>
     /// Represents a node that can connect to a draggable UI element.
