@@ -25,11 +25,11 @@ namespace Tools.UGUI.CursorManager._WIP
             public GameObject clickCursor;
         }
 
-        [SerializeField] private InputActionReference _clickActionReference; // Reference to the input action for click.
-        [SerializeField] private InputActionReference _pointerPositionActionReference; // Reference to the input action for pointer position.
-        [SerializeField] private CursorSet cursorSet; // Reference to the CursorSets
-        [SerializeField] private bool _setScreenPosition; // Whether to set the screen position of the cursor object
-        [SerializeField] private bool _hideHardwareCursor; // Whether to hide the hardware cursor
+        [SerializeField] private InputActionReference _clickActionReference; 
+        [SerializeField] private InputActionReference _pointerPositionActionReference; 
+        [SerializeField] private CursorSet cursorSet; 
+        [SerializeField] private bool _setScreenPosition; 
+        [SerializeField] private bool _hideHardwareCursor; 
 
         private bool _clickOn;
         private bool _hoverOn;
@@ -51,19 +51,18 @@ namespace Tools.UGUI.CursorManager._WIP
 
         private void Update()
         {
-            // Read the current state of the click action
+
             _clickOn = _clickActionReference.action.ReadValue<float>() > 0;
 
-            // Read the current pointer position
             Vector2 pointerPosition = _pointerPositionActionReference.action.ReadValue<Vector2>();
 
-            // Set the screen position of the cursor object if enabled
+
             if (_setScreenPosition)
             {
                 transform.position = pointerPosition;
             }
 
-            // Check if the pointer is over a UI element with a Selectable component
+
             _hoverOn = _hoveredComponentFinder.IsComponentFound;
 
             // Determine if dragging has started while hovering
@@ -81,8 +80,6 @@ namespace Tools.UGUI.CursorManager._WIP
             }
 
             _lastPointerPosition = pointerPosition;
-
-            // Calculate and update the new state
             CalculateNewState();
         }
 

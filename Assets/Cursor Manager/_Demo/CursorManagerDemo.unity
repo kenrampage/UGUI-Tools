@@ -5174,10 +5174,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4916495652704827697}
-  - component: {fileID: 5292630019909930584}
   - component: {fileID: 8942328917447565516}
+  - component: {fileID: 5292630019909930584}
   m_Layer: 0
-  m_Name: HoveredComponentFinder_Selectable
+  m_Name: CursorManagerWithComponentCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
