@@ -14,7 +14,7 @@ public class CursorManager : MonoBehaviour
     }
 
     [System.Serializable]
-    public class CursorSets
+    public class CursorSet
     {
         public GameObject defaultCursor;
         public GameObject hoverCursor;
@@ -24,7 +24,7 @@ public class CursorManager : MonoBehaviour
 
     [SerializeField] private InputActionReference _clickActionReference; // Reference to the input action for click.
     [SerializeField] private InputActionReference _pointerPositionActionReference; // Reference to the input action for pointer position.
-    [SerializeField] private CursorSets cursorSets; // Reference to the CursorSets
+    [SerializeField] private CursorSet cursorSet; // Reference to the CursorSets
     [SerializeField] private bool _setScreenPosition; // Whether to set the screen position of the cursor object
     [SerializeField] private bool _hideHardwareCursor; // Whether to hide the hardware cursor
 
@@ -34,7 +34,7 @@ public class CursorManager : MonoBehaviour
     private bool _dragStartedWhileHovering;
     private Vector2 _lastPointerPosition;
 
-    [SerializeField] private State currentState; // Make currentState visible in the inspector
+    [SerializeField] private State currentState; 
 
     public UnityEvent OnClickStatusChanged;
     public UnityEvent OnHoverStatusChanged;
@@ -118,25 +118,25 @@ public class CursorManager : MonoBehaviour
     private void UpdateCursorVisibility()
     {
         // Disable all cursors
-        cursorSets.defaultCursor.SetActive(false);
-        cursorSets.hoverCursor.SetActive(false);
-        cursorSets.dragCursor.SetActive(false);
-        cursorSets.clickCursor.SetActive(false);
+        cursorSet.defaultCursor.SetActive(false);
+        cursorSet.hoverCursor.SetActive(false);
+        cursorSet.dragCursor.SetActive(false);
+        cursorSet.clickCursor.SetActive(false);
 
         // Enable the cursor for the current state
         switch (currentState)
         {
             case State.Default:
-                cursorSets.defaultCursor.SetActive(true);
+                cursorSet.defaultCursor.SetActive(true);
                 break;
             case State.Hover:
-                cursorSets.hoverCursor.SetActive(true);
+                cursorSet.hoverCursor.SetActive(true);
                 break;
             case State.Drag:
-                cursorSets.dragCursor.SetActive(true);
+                cursorSet.dragCursor.SetActive(true);
                 break;
             case State.Click:
-                cursorSets.clickCursor.SetActive(true);
+                cursorSet.clickCursor.SetActive(true);
                 break;
         }
     }

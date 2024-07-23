@@ -6,7 +6,7 @@
             "id": "eefdee72-54a8-447c-823f-de677db5df60",
             "actions": [
                 {
-                    "name": "VirtualPoint",
+                    "name": "Point",
                     "type": "Value",
                     "id": "ca714048-cc45-4537-9410-93be76c3ba8c",
                     "expectedControlType": "Vector2",
@@ -116,7 +116,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "MKB;Gamepad",
-                    "action": "VirtualPoint",
+                    "action": "Point",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
