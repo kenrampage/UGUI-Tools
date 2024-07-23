@@ -43,7 +43,12 @@ namespace Tools.UGUI.CursorManager
 
         private void OnEnable()
         {
-            Cursor.visible = !_hideHardwareCursor;
+            HideCursor();
+        }
+
+        private void OnDisable()
+        {
+            ShowCursor();
         }
 
         private void Update()
@@ -81,6 +86,9 @@ namespace Tools.UGUI.CursorManager
 
             // Calculate and update the new state
             CalculateNewState();
+
+            // Hide the cursor if required
+            HideCursor();
         }
 
         private void CalculateNewState()
@@ -140,6 +148,22 @@ namespace Tools.UGUI.CursorManager
                 case State.Click:
                     cursorSet.clickCursor.SetActive(true);
                     break;
+            }
+        }
+
+        private void ShowCursor()
+        {
+            if (_hideHardwareCursor)
+            {
+                Cursor.visible = true;
+            }
+        }
+
+        private void HideCursor()
+        {
+            if (_hideHardwareCursor)
+            {
+                Cursor.visible = false;
             }
         }
     }

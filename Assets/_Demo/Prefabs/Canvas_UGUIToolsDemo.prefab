@@ -385,7 +385,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _clickActionReference: {fileID: -4800529897997487924, guid: 096ecf20a6dd1964895c9f97034c1afd, type: 3}
   _pointerPositionActionReference: {fileID: -6330663322062173709, guid: 096ecf20a6dd1964895c9f97034c1afd, type: 3}
-  cursorSets:
+  cursorSet:
     defaultCursor: {fileID: 2438409922891903078}
     hoverCursor: {fileID: 5741417846287156476}
     dragCursor: {fileID: 4693370801837284518}
