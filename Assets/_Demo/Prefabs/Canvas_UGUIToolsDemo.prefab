@@ -31,7 +31,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3172500823567247132}
   - {fileID: 1358289866527742479}
   m_Father: {fileID: 3794605429061973536}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -60,7 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3e1156dd9b84204bb82802ffd9add10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _manageHardwareCursorVisibility: 0
+  _hideHardwareCursor: 0
 --- !u!114 &1516039189789525562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73,10 +72,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b72bb3af97239544afcf06607c29204, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveActionReference: {fileID: -7042365695875835859, guid: 97087439b2ab2954b8cf8d0e594c5996, type: 3}
+  _moveActionReference: {fileID: -7042365695875835859, guid: 46369cd00fa038a4eae17002d5317d63, type: 3}
   _moveSpeed: 500
   _enableDirectionalMovement: 1
-  _pointerPositionInputAction: {fileID: 8030754163679232430, guid: 97087439b2ab2954b8cf8d0e594c5996, type: 3}
+  _pointerPositionInputAction: {fileID: 8030754163679232430, guid: 46369cd00fa038a4eae17002d5317d63, type: 3}
   _enablePositionalMovement: 1
   _pointerRectTransform: {fileID: 1507589315927828979}
 --- !u!1 &1146536333752109750
@@ -92,7 +91,7 @@ GameObject:
   - component: {fileID: 4407294257600170933}
   - component: {fileID: 4007598548246082893}
   m_Layer: 0
-  m_Name: Canvas_VirtualPointer_CursorManager
+  m_Name: Canvas_UGUIToolsDemo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -256,81 +255,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!1 &4261759415946144501
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3172500823567247132}
-  - component: {fileID: 2529192696194095887}
-  - component: {fileID: 8850075633563886695}
-  m_Layer: 0
-  m_Name: 'Image: Default Pointer'
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!224 &3172500823567247132
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4261759415946144501}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
-  m_ConstrainProportionsScale: 1
-  m_Children: []
-  m_Father: {fileID: 1507589315927828979}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 5, y: -10}
-  m_SizeDelta: {x: 64, y: 64}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &2529192696194095887
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4261759415946144501}
-  m_CullTransparentMesh: 1
---- !u!114 &8850075633563886695
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4261759415946144501}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.7058824}
-  m_RaycastTarget: 0
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b7af7704a6ff9fc49970806d9fd7e674, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 1
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &4693370801837284518
 GameObject:
   m_ObjectHideFlags: 0
@@ -459,8 +383,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b179ac817df2183499707517ea0116d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _clickActionReference: {fileID: -4800529897997487924, guid: 31f0fc5dbcd226042a8f4e95260935aa, type: 3}
-  _pointerPositionActionReference: {fileID: -6330663322062173709, guid: 31f0fc5dbcd226042a8f4e95260935aa, type: 3}
+  _clickActionReference: {fileID: -4800529897997487924, guid: 096ecf20a6dd1964895c9f97034c1afd, type: 3}
+  _pointerPositionActionReference: {fileID: -6330663322062173709, guid: 096ecf20a6dd1964895c9f97034c1afd, type: 3}
   cursorSets:
     defaultCursor: {fileID: 2438409922891903078}
     hoverCursor: {fileID: 5741417846287156476}

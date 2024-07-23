@@ -12,7 +12,7 @@ namespace Tools.UGUI.VirtualPointer
         private RectTransform _rectTransform;
 
         [Header("Settings")]
-        [SerializeField] private bool _manageHardwareCursorVisibility;
+        [SerializeField] private bool _hideHardwareCursor;
 
         #region Unity Methods
         private void Awake()
@@ -92,7 +92,7 @@ namespace Tools.UGUI.VirtualPointer
 
         private void ShowCursor()
         {
-            if (_manageHardwareCursorVisibility)
+            if (_hideHardwareCursor)
             {
                 Cursor.visible = true;
             }
@@ -100,7 +100,7 @@ namespace Tools.UGUI.VirtualPointer
 
         private void HideCursor()
         {
-            if (_manageHardwareCursorVisibility)
+            if (_hideHardwareCursor)
             {
                 Cursor.visible = false;
             }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1625482418120819149}
   - component: {fileID: 6828419827859248439}
   m_Layer: 0
-  m_Name: EventSystem_CursorManagerDemo_VirtualPointer
+  m_Name: EventSystem_UGUIToolsDemo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64,15 +64,15 @@ MonoBehaviour:
   m_MoveRepeatDelay: 0.5
   m_MoveRepeatRate: 0.1
   m_XRTrackingOrigin: {fileID: 0}
-  m_ActionsAsset: {fileID: -944628639613478452, guid: 31f0fc5dbcd226042a8f4e95260935aa, type: 3}
-  m_PointAction: {fileID: -6330663322062173709, guid: 31f0fc5dbcd226042a8f4e95260935aa, type: 3}
+  m_ActionsAsset: {fileID: -944628639613478452, guid: 096ecf20a6dd1964895c9f97034c1afd, type: 3}
+  m_PointAction: {fileID: -6330663322062173709, guid: 096ecf20a6dd1964895c9f97034c1afd, type: 3}
   m_MoveAction: {fileID: 0}
-  m_SubmitAction: {fileID: -5035522983199468178, guid: 31f0fc5dbcd226042a8f4e95260935aa, type: 3}
+  m_SubmitAction: {fileID: -5035522983199468178, guid: 096ecf20a6dd1964895c9f97034c1afd, type: 3}
   m_CancelAction: {fileID: 0}
-  m_LeftClickAction: {fileID: -4800529897997487924, guid: 31f0fc5dbcd226042a8f4e95260935aa, type: 3}
+  m_LeftClickAction: {fileID: -4800529897997487924, guid: 096ecf20a6dd1964895c9f97034c1afd, type: 3}
   m_MiddleClickAction: {fileID: 0}
   m_RightClickAction: {fileID: 0}
-  m_ScrollWheelAction: {fileID: -322322982728822185, guid: 31f0fc5dbcd226042a8f4e95260935aa, type: 3}
+  m_ScrollWheelAction: {fileID: -322322982728822185, guid: 096ecf20a6dd1964895c9f97034c1afd, type: 3}
   m_TrackedDevicePositionAction: {fileID: 8030754163679232430, guid: 115d83f09f814a549bbf797e08e18d24, type: 3}
   m_TrackedDeviceOrientationAction: {fileID: 0}
   m_DeselectOnBackgroundClick: 1
