@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
+using UnityEngine.InputSystem.UI;
 
 namespace Tools.UGUI.CursorManager
 {
@@ -24,8 +25,6 @@ namespace Tools.UGUI.CursorManager
             public GameObject clickCursor;
         }
 
-        [SerializeField] private InputActionReference _clickActionReference; // Reference to the input action for click.
-        [SerializeField] private InputActionReference _pointerPositionActionReference; // Reference to the input action for pointer position.
         [SerializeField] private CursorSet cursorSet; // Reference to the CursorSets
         [SerializeField] private bool _setScreenPosition; // Whether to set the screen position of the cursor object
         [SerializeField] private bool _hideHardwareCursor; // Whether to hide the hardware cursor
@@ -53,11 +52,20 @@ namespace Tools.UGUI.CursorManager
 
         private void Update()
         {
+            // Get the current input module from the current event system
+            var inputModule = EventSystem.current.currentInputModule as InputSystemUIInputModule;
+
+            if (inputModule == null)
+            {
+                Debug.LogWarning("Current input module is not an InputSystemUIInputModule.");
+                return;
+            }
+
             // Read the current state of the click action
-            _clickOn = _clickActionReference.action.ReadValue<float>() > 0;
+            _clickOn = inputModule.leftClick.action.ReadValue<float>() > 0;
 
             // Read the current pointer position
-            Vector2 pointerPosition = _pointerPositionActionReference.action.ReadValue<Vector2>();
+            Vector2 pointerPosition = inputModule.point.action.ReadValue<Vector2>();
 
             // Set the screen position of the cursor object if enabled
             if (_setScreenPosition)
