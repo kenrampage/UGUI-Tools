@@ -3,6 +3,8 @@ using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using UnityEngine.InputSystem.UI;
+using Tools.UGUI.CursorManager;
 
 namespace Tools.UGUI.CursorManager._WIP
 {
@@ -24,12 +26,9 @@ namespace Tools.UGUI.CursorManager._WIP
             public GameObject dragCursor;
             public GameObject clickCursor;
         }
-
-        [SerializeField] private InputActionReference _clickActionReference; 
-        [SerializeField] private InputActionReference _pointerPositionActionReference; 
-        [SerializeField] private CursorSet cursorSet; 
-        [SerializeField] private bool _setScreenPosition; 
-        [SerializeField] private bool _hideHardwareCursor; 
+        [SerializeField] private CursorSet cursorSet;
+        [SerializeField] private bool _setScreenPosition;
+        [SerializeField] private bool _hideHardwareCursor;
 
         private bool _clickOn;
         private bool _hoverOn;
@@ -42,7 +41,7 @@ namespace Tools.UGUI.CursorManager._WIP
         public UnityEvent OnClickStatusChanged;
         public UnityEvent OnHoverStatusChanged;
 
-        [SerializeField] private HoveredComponentFinder<Selectable> _hoveredComponentFinder;
+        [SerializeField] private HoveredComponentFinder_Selectable _hoveredComponentFinder;
 
         private void OnEnable()
         {
@@ -51,28 +50,30 @@ namespace Tools.UGUI.CursorManager._WIP
 
         private void Update()
         {
+            var inputModule = EventSystem.current.currentInputModule as InputSystemUIInputModule;
 
-            _clickOn = _clickActionReference.action.ReadValue<float>() > 0;
+            if (inputModule == null)
+            {
+                Debug.LogWarning("Current input module is not an InputSystemUIInputModule.");
+                return;
+            }
 
-            Vector2 pointerPosition = _pointerPositionActionReference.action.ReadValue<Vector2>();
-
+            _clickOn = inputModule.leftClick.action.ReadValue<float>() > 0;
+            Vector2 pointerPosition = inputModule.point.action.ReadValue<Vector2>();
 
             if (_setScreenPosition)
             {
                 transform.position = pointerPosition;
             }
 
-
             _hoverOn = _hoveredComponentFinder.IsComponentFound;
 
-            // Determine if dragging has started while hovering
             if (_clickOn && !_isDragging && _hoverOn && Vector2.Distance(pointerPosition, _lastPointerPosition) > 0.1f)
             {
                 _isDragging = true;
                 _dragStartedWhileHovering = true;
             }
 
-            // Reset dragging state when click is released
             if (!_clickOn)
             {
                 _isDragging = false;
@@ -113,19 +114,16 @@ namespace Tools.UGUI.CursorManager._WIP
 
         private void HandleStateChange()
         {
-            //Debug.Log($"State changed to: {currentState}");
             UpdateCursorVisibility();
         }
 
         private void UpdateCursorVisibility()
         {
-            // Disable all cursors
             cursorSet.defaultCursor.SetActive(false);
             cursorSet.hoverCursor.SetActive(false);
             cursorSet.dragCursor.SetActive(false);
             cursorSet.clickCursor.SetActive(false);
 
-            // Enable the cursor for the current state
             switch (currentState)
             {
                 case State.Default:
