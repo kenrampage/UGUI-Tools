@@ -5,23 +5,29 @@ using UnityEngine.InputSystem.Layouts;
 
 namespace Tools.UGUI.VirtualPointer
 {
+    /// <summary>
+    /// Handles the creation and management of a virtual pointer for UI interaction.
+    /// </summary>
+    [AddComponentMenu("Tools/UGUI/Virtual Pointer/Virtual Pointer Handler")]
     [RequireComponent(typeof(RectTransform))]
     public class VirtualPointerHandler : MonoBehaviour
     {
+        #region Fields
         private VirtualPointer _virtualPointer;
         private RectTransform _rectTransform;
 
         [Header("Settings")]
-        [SerializeField] private bool _hideHardwareCursor;
+        [SerializeField] private bool _hideHardwareCursor = true;
+        #endregion
 
         #region Unity Methods
         private void Awake()
         {
             _rectTransform = GetComponent<RectTransform>();
-
             RegisterVirtualPointer();
             StartCoroutine(CreateVirtualPointerAtEndOfFrame());
         }
+
         private void OnEnable()
         {
             HideCursor();
@@ -40,16 +46,13 @@ namespace Tools.UGUI.VirtualPointer
         private void Update()
         {
             UpdateVirtualPointerPosition();
-
             HideCursor();
         }
         #endregion
 
         #region Private Methods
-
         private IEnumerator CreateVirtualPointerAtEndOfFrame()
         {
-            // Wait until all other updates are done
             yield return new WaitForEndOfFrame();
             CreateVirtualPointer();
         }
@@ -105,7 +108,6 @@ namespace Tools.UGUI.VirtualPointer
                 Cursor.visible = false;
             }
         }
-
         #endregion
     }
 }

@@ -12,7 +12,7 @@ namespace Tools.UGUI.Draggable
     /// Can connect to a DraggableNode for snapping functionality.
     /// Inherits from Unity's Selectable class.
     /// </summary>
-    [AddComponentMenu("Tools/UGUI/Draggable")]
+    [AddComponentMenu("Tools/UGUI/Draggable/Draggable")]
     [RequireComponent(typeof(CanvasGroup)), RequireComponent(typeof(RectTransform))]
     public class Draggable : Selectable, IBeginDragHandler, IDragHandler, IEndDragHandler
     {

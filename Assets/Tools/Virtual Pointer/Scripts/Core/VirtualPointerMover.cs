@@ -2,53 +2,37 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 
-/// <summary>
-/// Handles movement of a virtual pointer based on input actions, supporting both directional and positional movement.
-/// </summary>
 namespace Tools.UGUI.VirtualPointer
 {
-    [AddComponentMenu("Tools/Virtual Pointer/Virtual Pointer Mover")]
+    /// <summary>
+    /// Manages the movement of a virtual pointer using both directional and positional input.
+    /// </summary>
+    [AddComponentMenu("Tools/UGUI/Virtual Pointer/Virtual Pointer Mover")]
     public class VirtualPointerMover : MonoBehaviour
     {
+        #region Fields
         [Header("Directional Movement Settings")]
-        [SerializeField] private InputActionReference _moveActionReference; // Reference to the input action for directional movement.
-        [SerializeField] private float _moveSpeed = 1000.0f; // Speed at which the pointer moves directionally.
-        [SerializeField] private bool _enableDirectionalMovement = true; // Toggle for enabling/disabling directional movement.
+        [SerializeField] private InputActionReference _moveActionReference;
+        [SerializeField] private float _moveSpeed = 1000.0f;
+        [SerializeField] private bool _enableDirectionalMovement = true;
 
         [Header("Positional Movement Settings")]
-        [SerializeField] private InputActionReference _pointerPositionInputAction; // Reference to the input action for positional movement.
-        [SerializeField] private bool _enablePositionalMovement = true; // Toggle for enabling/disabling positional movement.
+        [SerializeField] private InputActionReference _pointerPositionInputAction;
+        [SerializeField] private bool _enablePositionalMovement = true;
 
         [Header("Common Settings")]
-        [SerializeField] private RectTransform _pointerRectTransform; // The RectTransform of the pointer.
+        [SerializeField] private RectTransform _pointerRectTransform;
+        #endregion
 
         #region Unity Methods
         private void OnEnable()
         {
-            if (_moveActionReference != null && _enableDirectionalMovement)
-            {
-                _moveActionReference.action.Enable(); // Enable the directional input action.
-            }
-
-            if (_pointerPositionInputAction != null && _enablePositionalMovement)
-            {
-                _pointerPositionInputAction.action.Enable(); // Enable the positional input action.
-                _pointerPositionInputAction.action.performed += OnPointerPositionInputPerformed;
-            }
+            EnableInputActions();
         }
 
         private void OnDisable()
         {
-            if (_moveActionReference != null)
-            {
-                _moveActionReference.action.Disable(); // Disable the directional input action.
-            }
-
-            if (_pointerPositionInputAction != null)
-            {
-                _pointerPositionInputAction.action.Disable(); // Disable the positional input action.
-                _pointerPositionInputAction.action.performed -= OnPointerPositionInputPerformed;
-            }
+            DisableInputActions();
         }
 
         private void Update()
@@ -61,6 +45,33 @@ namespace Tools.UGUI.VirtualPointer
         #endregion
 
         #region Private Methods
+        private void EnableInputActions()
+        {
+            if (_moveActionReference != null && _enableDirectionalMovement)
+            {
+                _moveActionReference.action.Enable();
+            }
+
+            if (_pointerPositionInputAction != null && _enablePositionalMovement)
+            {
+                _pointerPositionInputAction.action.Enable();
+                _pointerPositionInputAction.action.performed += OnPointerPositionInputPerformed;
+            }
+        }
+
+        private void DisableInputActions()
+        {
+            if (_moveActionReference != null)
+            {
+                _moveActionReference.action.Disable();
+            }
+
+            if (_pointerPositionInputAction != null)
+            {
+                _pointerPositionInputAction.action.Disable();
+                _pointerPositionInputAction.action.performed -= OnPointerPositionInputPerformed;
+            }
+        }
 
         private void HandleDirectionalMovement()
         {
@@ -100,7 +111,7 @@ namespace Tools.UGUI.VirtualPointer
             }
             else
             {
-                Debug.LogError("canvasRectTransform is null");
+                Debug.LogError("Canvas RectTransform not found");
             }
         }
 
@@ -109,9 +120,9 @@ namespace Tools.UGUI.VirtualPointer
             Transform currentTransform = _pointerRectTransform;
             while (currentTransform != null)
             {
-                if (currentTransform.GetComponent<Canvas>() != null)
+                if (currentTransform.TryGetComponent(out Canvas canvas))
                 {
-                    return currentTransform.GetComponent<RectTransform>();
+                    return currentTransform as RectTransform;
                 }
                 currentTransform = currentTransform.parent;
             }
@@ -134,27 +145,32 @@ namespace Tools.UGUI.VirtualPointer
                 RectTransform canvasRectTransform = GetCanvasRectTransform();
                 if (canvasRectTransform != null)
                 {
-                    Vector2 canvasSize = canvasRectTransform.sizeDelta;
                     Vector2 localPoint;
                     RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRectTransform, newPosition, null, out localPoint);
-                    Vector2 pointerSize = new Vector2(1, 1);
-                    Vector2 halfPointerSize = pointerSize * 0.5f;
-                    Vector2 clampedPosition = localPoint;
-                    clampedPosition.x = Mathf.Clamp(clampedPosition.x, -canvasSize.x * 0.5f + halfPointerSize.x, canvasSize.x * 0.5f - halfPointerSize.x);
-                    clampedPosition.y = Mathf.Clamp(clampedPosition.y, -canvasSize.y * 0.5f + halfPointerSize.y, canvasSize.y * 0.5f - halfPointerSize.y);
-                    _pointerRectTransform.anchoredPosition = clampedPosition;
+                    _pointerRectTransform.anchoredPosition = ClampPositionToCanvas(localPoint, canvasRectTransform.sizeDelta);
                 }
                 else
                 {
-                    Debug.LogError("canvasRectTransform is null");
+                    Debug.LogError("Canvas RectTransform not found");
                 }
             }
         }
 
+        private Vector2 ClampPositionToCanvas(Vector2 position, Vector2 canvasSize)
+        {
+            Vector2 pointerSize = new Vector2(1, 1);
+            Vector2 halfPointerSize = pointerSize * 0.5f;
+            Vector2 clampedPosition = position;
+            clampedPosition.x = Mathf.Clamp(clampedPosition.x, -canvasSize.x * 0.5f + halfPointerSize.x, canvasSize.x * 0.5f - halfPointerSize.x);
+            clampedPosition.y = Mathf.Clamp(clampedPosition.y, -canvasSize.y * 0.5f + halfPointerSize.y, canvasSize.y * 0.5f - halfPointerSize.y);
+            return clampedPosition;
+        }
         #endregion
 
         #region Public Methods
-
+        /// <summary>
+        /// Sets whether directional movement is enabled.
+        /// </summary>
         public void SetEnableDirectionalMovement(bool enable)
         {
             _enableDirectionalMovement = enable;
@@ -168,6 +184,9 @@ namespace Tools.UGUI.VirtualPointer
             }
         }
 
+        /// <summary>
+        /// Sets whether positional movement is enabled.
+        /// </summary>
         public void SetEnablePositionalMovement(bool enable)
         {
             _enablePositionalMovement = enable;
@@ -183,6 +202,43 @@ namespace Tools.UGUI.VirtualPointer
             }
         }
 
+        /// <summary>
+        /// Sets the pointer position to match the given GameObject's position.
+        /// </summary>
+        public void SetPointerPositionToGameObject(GameObject target)
+        {
+            if (target == null || _pointerRectTransform == null) return;
+
+            Canvas targetCanvas = target.GetComponentInParent<Canvas>();
+            if (targetCanvas == null) return;
+
+            Vector2 screenPosition;
+
+            if (targetCanvas.renderMode == RenderMode.ScreenSpaceOverlay)
+            {
+                RectTransform targetRect = target.GetComponent<RectTransform>();
+                screenPosition = targetRect != null ? RectTransformUtility.WorldToScreenPoint(null, targetRect.position) : RectTransformUtility.WorldToScreenPoint(null, target.transform.position);
+            }
+            else
+            {
+                Camera worldCamera = targetCanvas.worldCamera ?? Camera.main;
+                screenPosition = RectTransformUtility.WorldToScreenPoint(worldCamera, target.transform.position);
+            }
+
+            _pointerRectTransform.position = screenPosition;
+            ClampPointerPosition();
+        }
+
+        /// <summary>
+        /// Sets the pointer position to match the currently selected object's position.
+        /// </summary>
+        public void SetPointerPositionToCurrentSelectedObject()
+        {
+            if (EventSystem.current != null && EventSystem.current.currentSelectedGameObject != null)
+            {
+                SetPointerPositionToGameObject(EventSystem.current.currentSelectedGameObject);
+            }
+        }
         #endregion
     }
 }

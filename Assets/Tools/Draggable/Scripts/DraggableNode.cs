@@ -10,7 +10,7 @@ namespace Tools.UGUI.Draggable
     /// Handles events for pointer interactions and dropping.
     /// Can snap a draggable selectable element to a target position.
     /// </summary>
-    [AddComponentMenu("Tools/UGUI/Draggable Node")]
+    [AddComponentMenu("Tools/UGUI/Draggable/Draggable Node")]
     [RequireComponent(typeof(CanvasGroup)), RequireComponent(typeof(RectTransform))]
     public class DraggableNode : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler, IBeginDragHandler
     {
