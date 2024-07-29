@@ -383,22 +383,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b179ac817df2183499707517ea0116d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _clickActionReference: {fileID: -4800529897997487924, guid: 096ecf20a6dd1964895c9f97034c1afd, type: 3}
-  _pointerPositionActionReference: {fileID: -6330663322062173709, guid: 096ecf20a6dd1964895c9f97034c1afd, type: 3}
-  cursorSet:
-    defaultCursor: {fileID: 2438409922891903078}
-    hoverCursor: {fileID: 5741417846287156476}
-    dragCursor: {fileID: 4693370801837284518}
-    clickCursor: {fileID: 7944722734708850546}
-  _setScreenPosition: 0
-  _hideHardwareCursor: 1
-  currentState: 0
-  OnClickStatusChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  OnHoverStatusChanged:
-    m_PersistentCalls:
-      m_Calls: []
+  _debugInfo:
+    currentState: 0
+  _settings:
+    setScreenPosition: 1
+    hideHardwareCursor: 1
+    cursorSet:
+      defaultCursor: {fileID: 2438409922891903078}
+      hoverCursor: {fileID: 5741417846287156476}
+      dragCursor: {fileID: 4693370801837284518}
+      clickCursor: {fileID: 7944722734708850546}
+  _events:
+    OnClickStatusChanged:
+      m_PersistentCalls:
+        m_Calls: []
+    OnHoverStatusChanged:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!222 &5183954803521472510
 CanvasRenderer:
   m_ObjectHideFlags: 0
