@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
 using UnityEngine.InputSystem.UI;
@@ -12,12 +11,14 @@ namespace Tools.UGUI.CursorManager
     [AddComponentMenu("Tools/UGUI/Cursor Manager/Cursor Manager")]
     public class CursorManager : MonoBehaviour
     {
-        public enum State
+        #region Nested Classes
+        [System.Serializable]
+        public class Settings
         {
-            Default,
-            Hover,
-            Drag,
-            Click
+            public bool setScreenPosition = true;
+            public bool hideHardwareCursor = true;
+            [Space(10)]
+            public CursorSet cursorSet;
         }
 
         [System.Serializable]
@@ -29,21 +30,46 @@ namespace Tools.UGUI.CursorManager
             public GameObject clickCursor;
         }
 
-        [SerializeField] private CursorSet cursorSet; // Reference to the CursorSets
-        [SerializeField] private bool _setScreenPosition; // Whether to set the screen position of the cursor object
-        [SerializeField] private bool _hideHardwareCursor; // Whether to hide the hardware cursor
+        [System.Serializable]
+        public class DebugInfo
+        {
+            public State currentState;
+        }
 
-        private bool _clickOn;
-        private bool _hoverOn;
+        [System.Serializable]
+        public class EventsContainer
+        {
+            public UnityEvent<bool> OnClickStatusChanged;
+            public UnityEvent<bool> OnHoverStatusChanged;
+        }
+        #endregion
+
+        #region Enums
+        public enum State
+        {
+            Default,
+            Hover,
+            Drag,
+            Click
+        }
+        #endregion
+
+        #region Serialized Fields
+        [SerializeField] private DebugInfo _debugInfo;
+        [SerializeField] private Settings _settings;
+        [SerializeField] private EventsContainer _events;
+        #endregion
+
+        #region Private Fields
+        private bool _isClickOn;
+        private bool _isHoverOn;
         private bool _isDragging;
         private bool _dragStartedWhileHovering;
         private Vector2 _lastPointerPosition;
+        private InputSystemUIInputModule _inputModule;
+        #endregion
 
-        [SerializeField] private State currentState;
-
-        public UnityEvent OnClickStatusChanged;
-        public UnityEvent OnHoverStatusChanged;
-
+        #region Unity Lifecycle Methods
         private void OnEnable()
         {
             HideCursor();
@@ -56,127 +82,166 @@ namespace Tools.UGUI.CursorManager
 
         private void Update()
         {
-            // Get the current input module from the current event system
-            var inputModule = EventSystem.current.currentInputModule as InputSystemUIInputModule;
+            UpdateInputState();
+            UpdateCursorPosition();
+            UpdateDragState();
+            CalculateNewState();
+            HideCursor();
+        }
+        #endregion
 
-            if (inputModule == null)
+        #region Input and State Update Methods
+        /// <summary>
+        /// Updates the input state and triggers events for click and hover status changes.
+        /// </summary>
+        private void UpdateInputState()
+        {
+            if (_inputModule == null)
             {
-                Debug.LogWarning("Current input module is not an InputSystemUIInputModule.");
-                return;
+                _inputModule = EventSystem.current.currentInputModule as InputSystemUIInputModule;
+                if (_inputModule == null)
+                {
+                    Debug.LogWarning("Current input module is not an InputSystemUIInputModule.");
+                    return;
+                }
             }
 
-            // Read the current state of the click action
-            _clickOn = inputModule.leftClick.action.ReadValue<float>() > 0;
+            bool newClickOn = _inputModule.leftClick.action.ReadValue<float>() > 0;
+            bool newHoverOn = EventSystem.current.IsPointerOverGameObject();
 
-            // Read the current pointer position
-            Vector2 pointerPosition = inputModule.point.action.ReadValue<Vector2>();
-
-            // Set the screen position of the cursor object if enabled
-            if (_setScreenPosition)
+            if (newClickOn != _isClickOn)
             {
-                transform.position = pointerPosition;
+                _isClickOn = newClickOn;
+                _events.OnClickStatusChanged.Invoke(_isClickOn);
             }
 
-            // Check if the pointer is over a UI element
-            _hoverOn = EventSystem.current.IsPointerOverGameObject();
+            if (newHoverOn != _isHoverOn)
+            {
+                _isHoverOn = newHoverOn;
+                _events.OnHoverStatusChanged.Invoke(_isHoverOn);
+            }
+        }
 
-            // Determine if dragging has started while hovering
-            if (_clickOn && !_isDragging && _hoverOn && Vector2.Distance(pointerPosition, _lastPointerPosition) > 0.1f)
+        /// <summary>
+        /// Updates the cursor position if setScreenPosition is enabled.
+        /// </summary>
+        private void UpdateCursorPosition()
+        {
+            if (_settings.setScreenPosition)
+            {
+                transform.position = _inputModule.point.action.ReadValue<Vector2>();
+            }
+        }
+
+        /// <summary>
+        /// Updates the drag state based on current input and hover status.
+        /// </summary>
+        private void UpdateDragState()
+        {
+            Vector2 pointerPosition = _inputModule.point.action.ReadValue<Vector2>();
+
+            if (_isClickOn && !_isDragging && _isHoverOn && Vector2.Distance(pointerPosition, _lastPointerPosition) > 0.1f)
             {
                 _isDragging = true;
                 _dragStartedWhileHovering = true;
             }
 
-            // Reset dragging state when click is released
-            if (!_clickOn)
+            if (!_isClickOn)
             {
                 _isDragging = false;
                 _dragStartedWhileHovering = false;
             }
 
             _lastPointerPosition = pointerPosition;
-
-            // Calculate and update the new state
-            CalculateNewState();
-
-            // Hide the cursor if required
-            HideCursor();
         }
 
+        /// <summary>
+        /// Calculates the new cursor state and handles state changes.
+        /// </summary>
         private void CalculateNewState()
         {
-            State newState;
+            State newState = DetermineNewState();
 
-            if (_clickOn && _hoverOn && !_isDragging)
+            if (newState != _debugInfo.currentState)
             {
-                newState = State.Click;
-            }
-            else if (_isDragging && _dragStartedWhileHovering)
-            {
-                newState = State.Drag;
-            }
-            else if (_hoverOn)
-            {
-                newState = State.Hover;
-            }
-            else
-            {
-                newState = State.Default;
-            }
-
-            if (newState != currentState)
-            {
-                currentState = newState;
+                _debugInfo.currentState = newState;
                 HandleStateChange();
             }
         }
 
+        /// <summary>
+        /// Determines the new cursor state based on current input and drag status.
+        /// </summary>
+        /// <returns>The new cursor state.</returns>
+        private State DetermineNewState()
+        {
+            if (_isClickOn && _isHoverOn && !_isDragging)
+                return State.Click;
+            if (_isDragging && _dragStartedWhileHovering)
+                return State.Drag;
+            if (_isHoverOn)
+                return State.Hover;
+            return State.Default;
+        }
+        #endregion
+
+        #region Cursor Visibility Methods
+        /// <summary>
+        /// Handles state changes by updating cursor visibility.
+        /// </summary>
         private void HandleStateChange()
         {
-            //Debug.Log($"State changed to: {currentState}");
             UpdateCursorVisibility();
         }
 
+        /// <summary>
+        /// Updates the visibility of cursor GameObjects based on the current state.
+        /// </summary>
         private void UpdateCursorVisibility()
         {
-            // Disable all cursors
-            cursorSet.defaultCursor.SetActive(false);
-            cursorSet.hoverCursor.SetActive(false);
-            cursorSet.dragCursor.SetActive(false);
-            cursorSet.clickCursor.SetActive(false);
+            _settings.cursorSet.defaultCursor.SetActive(false);
+            _settings.cursorSet.hoverCursor.SetActive(false);
+            _settings.cursorSet.dragCursor.SetActive(false);
+            _settings.cursorSet.clickCursor.SetActive(false);
 
-            // Enable the cursor for the current state
-            switch (currentState)
+            switch (_debugInfo.currentState)
             {
                 case State.Default:
-                    cursorSet.defaultCursor.SetActive(true);
+                    _settings.cursorSet.defaultCursor.SetActive(true);
                     break;
                 case State.Hover:
-                    cursorSet.hoverCursor.SetActive(true);
+                    _settings.cursorSet.hoverCursor.SetActive(true);
                     break;
                 case State.Drag:
-                    cursorSet.dragCursor.SetActive(true);
+                    _settings.cursorSet.dragCursor.SetActive(true);
                     break;
                 case State.Click:
-                    cursorSet.clickCursor.SetActive(true);
+                    _settings.cursorSet.clickCursor.SetActive(true);
                     break;
             }
         }
 
+        /// <summary>
+        /// Shows the hardware cursor if hideHardwareCursor is enabled.
+        /// </summary>
         private void ShowCursor()
         {
-            if (_hideHardwareCursor)
+            if (_settings.hideHardwareCursor)
             {
                 Cursor.visible = true;
             }
         }
 
+        /// <summary>
+        /// Hides the hardware cursor if hideHardwareCursor is enabled.
+        /// </summary>
         private void HideCursor()
         {
-            if (_hideHardwareCursor)
+            if (_settings.hideHardwareCursor)
             {
                 Cursor.visible = false;
             }
         }
+        #endregion
     }
 }
