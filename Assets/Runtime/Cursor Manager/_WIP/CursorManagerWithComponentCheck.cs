@@ -10,7 +10,7 @@ namespace Tools.UGUI.CursorManager
     /// <summary>
     /// Manages cursor states and visuals based on user interaction and hovered components.
     /// </summary>
-    [AddComponentMenu("Tools/UGUI/Cursor Manager/Selectable Hover Handler")]
+    [AddComponentMenu("Tools/UGUI/Cursor Manager/Cursor Manager With Component Check")]
     public class CursorManagerWithComponentCheck : MonoBehaviour
     {
         public enum State

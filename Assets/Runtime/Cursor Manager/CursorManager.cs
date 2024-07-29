@@ -6,6 +6,10 @@ using UnityEngine.InputSystem.UI;
 
 namespace Tools.UGUI.CursorManager
 {
+    /// <summary>
+    /// Manages cursor states and visuals based on user interaction and hovered components.
+    /// </summary>
+    [AddComponentMenu("Tools/UGUI/Cursor Manager/Cursor Manager")]
     public class CursorManager : MonoBehaviour
     {
         public enum State
