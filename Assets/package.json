@@ -1,0 +1,17 @@
+{
+  "name": "com.kenrampage.uguitools",
+  "version": "1.0.0",
+  "displayName": "Unity UI Extensions",
+  "description": "A few tools meant to help fill the gaps between Unity's EventSystem and Input System.\n\nSee the Github repo for more details:\nhttps://github.com/kenrampage/UGUI-Tools",
+  "unity": "2022.3",
+  "documentationUrl": "https://github.com/kenrampage/UGUI-Tools/wiki",
+  "changelogUrl": "https://github.com/kenrampage/UGUI-Tools/wiki/Change-Log",
+  "licensesUrl": "https://github.com/kenrampage/UGUI-Tools/wiki/License",
+  "dependencies": {
+    "com.unity.inputsystem": "1.7.0"
+  },
+  "author": {
+    "name": "Ken Rampage",
+    "url": "https://github.com/kenrampage/UGUI-Tools"
+  }
+}
