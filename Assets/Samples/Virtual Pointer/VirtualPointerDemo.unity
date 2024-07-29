@@ -1669,11 +1669,11 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Test out common UGUI and TextMeshPro UI Elements below using either Mouse
-    or Gamepad input
+  m_Text: 'Test out common UGUI Elements below using either Mouse or Gamepad input
 
 
-    Use "A" button on Gamepad to click'
+    Use
+    "A" button on Gamepad to click'
 --- !u!222 &603435512
 CanvasRenderer:
   m_ObjectHideFlags: 0
