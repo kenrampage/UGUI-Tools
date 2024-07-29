@@ -13,5 +13,27 @@
   "author": {
     "name": "Ken Rampage",
     "url": "https://github.com/kenrampage/UGUI-Tools"
-  }
+  },
+  "samples": [
+    {
+      "displayName": "Cursor Manager",
+      "description": "Sample scene for Cursor Manager",
+      "path": "Samples~/Cursor Manager"
+    },
+    {
+      "displayName": "Draggable",
+      "description": "Sample scene for Draggable UI Objects",
+      "path": "Samples~/Draggable"
+    },
+    {
+      "displayName": "Virtual Pointer",
+      "description": "Sample scene for Virtual Pointer",
+      "path": "Samples~/Virtual Pointer"
+    },
+    {
+      "displayName": "UGUI-Tools Sample Scene",
+      "description": "Sample scene containing all tools used together",
+      "path": "Samples~/All Tools"
+    }
+  ]
 }
