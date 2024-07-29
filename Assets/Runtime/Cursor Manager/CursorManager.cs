@@ -69,7 +69,7 @@ namespace Tools.UGUI.CursorManager
         private InputSystemUIInputModule _inputModule;
         #endregion
 
-        #region Unity Lifecycle Methods
+        #region Unity Methods
         private void OnEnable()
         {
             HideCursor();
