@@ -1,6 +1,6 @@
 {
   "name": "com.kenrampage.uguitools",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "displayName": "Unity UI Extensions",
   "description": "A few tools meant to help fill the gaps between Unity's EventSystem and Input System.\n\nSee the Github repo for more details:\nhttps://github.com/kenrampage/UGUI-Tools",
   "unity": "2022.3",
@@ -31,7 +31,7 @@
       "path": "Samples~/Virtual Pointer"
     },
     {
-      "displayName": "All Tools Together",
+      "displayName": "All Tools",
       "description": "Sample scene containing all tools used together",
       "path": "Samples~/All Tools"
     }
