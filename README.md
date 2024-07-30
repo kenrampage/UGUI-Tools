@@ -5,8 +5,11 @@ A few tools meant to help fill the gaps between Unity's EventSystem and Input Sy
 - Helpers: A few helper scripts to help with common tasks
 
 
-Project Requirements
+## Project Requirements
 - Unity Editor 2022.3.21f1 or later
 - Input system 1.7 or later
 
-See the Wiki for documentation, change log, and license information: https://github.com/kenrampage/UGUI-Tools/wiki
+## Documentation
+- [Documentation](https://github.com/kenrampage/UGUI-Tools/wiki)
+- [Changelog](./CHANGELOG.md)
+- [License](./LICENSE.md)
