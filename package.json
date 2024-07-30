@@ -6,7 +6,7 @@
   "unity": "2022.3",
   "documentationUrl": "https://github.com/kenrampage/UGUI-Tools/wiki",
   "changelogUrl": "https://github.com/kenrampage/UGUI-Tools/wiki/Change-Log",
-  "licensesUrl": "https://github.com/kenrampage/UGUI-Tools/wiki/License",
+  "licensesUrl": "Packages/com.kenrampage.uguitools/License.md",
   "dependencies": {
     "com.unity.inputsystem": "1.7.0"
   },
