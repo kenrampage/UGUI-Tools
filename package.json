@@ -6,7 +6,7 @@
   "unity": "2022.3",
   "documentationUrl": "https://github.com/kenrampage/UGUI-Tools/wiki",
   "changelogUrl": "https://github.com/kenrampage/UGUI-Tools/blob/main/CHANGELOG.md",
-  "licensesUrl": "https://github.com/kenrampage/UGUI-Tools?tab=MIT-1-ov-file",
+  "licensesUrl": "https://github.com/kenrampage/UGUI-Tools/blob/main/LICENSE.md",
   "dependencies": {
     "com.unity.inputsystem": "1.7.0"
   },
