@@ -1,3 +1,5 @@
+# Changelog
+
 ## [1.0.1] - 2024-08-01
 * Cleaned up sample scenes and assets
 * Renamed UGUIToolsDemo sample to AllToolsDemo
