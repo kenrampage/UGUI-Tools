@@ -6,7 +6,7 @@ A few tools meant to help fill the gaps between Unity's EventSystem and Input Sy
 
 
 ## Project Requirements
-- Unity Editor 2022.3.21f1 or later
+- Unity Editor 2021 LTS or later
 - Input system 1.7 or later
 
 ## Documentation
