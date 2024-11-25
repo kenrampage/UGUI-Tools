@@ -1,7 +1,7 @@
-A few tools meant to help fill the gaps between Unity's EventSystem and Input System.
-- Draggable Object and matching Node script: Allows objects to be dragged, dropped, and installed seemlessly along other ui elements like buttons and sliders.
-- Virtual Pointer system: Adds an abstraction layer between the EventSystem/InputModule, and a Virtual Pointer gameobject allowing gamepad support and added input flexibility
-- Cursor Manager: Handles visual state of cursor
+A few tools to aid UI development in Unity.
+- Draggable UI Object: Allows UI objects to be dragged, dropped, and installed seemlessly along other UI elements like buttons and sliders.
+- Virtual Pointer: Creates a virtual cursor device that can be controlled by a gamepad and/or directional input, with lots of other options and features.
+- Cursor Manager: Handles swapping visuals while in default, hover, click, or drag states
 - Helpers: A few helper scripts to assist with common tasks
 
 
