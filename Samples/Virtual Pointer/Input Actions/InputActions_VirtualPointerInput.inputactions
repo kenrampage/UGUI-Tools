@@ -1,5 +1,5 @@
 {
-    "name": "InputActions_VirtualPointer",
+    "name": "InputActions_VirtualPointerInput",
     "maps": [
         {
             "name": "Default",
