@@ -1,6 +1,6 @@
 {
   "name": "com.kenrampage.uguitools",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "displayName": "Unity UI Extensions",
   "description": "A few tools meant to help fill the gaps between Unity's EventSystem and Input System.",
   "unity": "2022.3",
@@ -18,22 +18,13 @@
     {
       "displayName": "Cursor Manager",
       "description": "Sample scene for Cursor Manager",
-      "path": "Samples~/Cursor Manager"
+      "path": "Samples/Cursor Manager"
     },
     {
       "displayName": "Draggable",
       "description": "Sample scene for Draggable UI Objects",
-      "path": "Samples~/Draggable"
-    },
-    {
-      "displayName": "Virtual Pointer",
-      "description": "Sample scene for Virtual Pointer",
-      "path": "Samples~/Virtual Pointer"
-    },
-    {
-      "displayName": "All Tools",
-      "description": "Sample scene containing all tools used together",
-      "path": "Samples~/All Tools"
+      "path": "Samples/Draggable"
     }
+
   ]
 }

@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.1.0] - 2025-03-08
+* Removed Virtual Pointer assets from this repo and moved them to https://github.com/kenrampage/Virtual-Pointer
+* Made Samples visible in Unity
+
 ## [1.0.1] - 2024-08-01
 * Cleaned up sample scenes and assets
 * Renamed UGUIToolsDemo sample to AllToolsDemo
