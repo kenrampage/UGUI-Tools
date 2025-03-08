@@ -18,12 +18,12 @@
     {
       "displayName": "Cursor Manager",
       "description": "Sample scene for Cursor Manager",
-      "path": "Samples/Cursor Manager"
+      "path": "Samples~/Cursor Manager"
     },
     {
       "displayName": "Draggable",
       "description": "Sample scene for Draggable UI Objects",
-      "path": "Samples/Draggable"
+      "path": "Samples~/Draggable"
     }
 
   ]
