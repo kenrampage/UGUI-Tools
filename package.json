@@ -1,0 +1,30 @@
+{
+  "name": "com.kenrampage.uguitools",
+  "version": "1.1.0",
+  "displayName": "Unity UI Extensions",
+  "description": "A few tools meant to help fill the gaps between Unity's EventSystem and Input System.",
+  "unity": "2022.3",
+  "documentationUrl": "https://github.com/kenrampage/UGUI-Tools",
+  "changelogUrl": "https://github.com/kenrampage/UGUI-Tools/blob/main/CHANGELOG.md",
+  "licensesUrl": "https://github.com/kenrampage/UGUI-Tools/blob/main/LICENSE.md",
+  "dependencies": {
+    "com.unity.inputsystem": "1.7.0"
+  },
+  "author": {
+    "name": "Ken Rampage",
+    "url": "https://github.com/kenrampage/UGUI-Tools"
+  },
+  "samples": [
+    {
+      "displayName": "Cursor Manager",
+      "description": "Sample scene for Cursor Manager",
+      "path": "Samples~/Cursor Manager"
+    },
+    {
+      "displayName": "Draggable",
+      "description": "Sample scene for Draggable UI Objects",
+      "path": "Samples~/Draggable"
+    }
+
+  ]
+}
